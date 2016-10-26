@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+    <title>exp test</title>
+</head>
+<body>
+    <img class="img" data-src="http://f.hiphotos.baidu.com/exp/w=500/sign=b0e7bb6d92ef76c6d0d2fb2bad17fdf6/838ba61ea8d3fd1f140ecb76324e251f95ca5f72.jpg"></img>
+
+    <script src="js/es5-shim.js"></script>
+    <script src="js/es5-sham.js"></script>
+
+    <script src="js/es6-promise.js"></script>
+    <script src="js/webp.js"></script>
+
+    <script>
+        checkFeature('lossy').then(function (flag) {
+            var img = document.querySelector('img');
+            var src = img.getAttribute('data-src');
+            if (flag) {
+                src = src.replace(/\.jpg$/, '.webp');
+            } else {
+                src = src;
+            }
+
+            img.src = src;
+        });
+    </script>
+</body>
+</html>

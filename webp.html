@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+    <title>webp test</title>
+    <style>
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="output"></div>
+
+    <script src="js/es5-shim.js"></script>
+    <script src="js/es5-sham.js"></script>
+
+    <script src="js/es6-promise.js"></script>
+    <script src="js/webp.js"></script>
+
+    <script>
+        var map = ['lossy', 'lossless', 'alpha', 'animation'];
+
+        Promise.all(map.map(checkFeature)).then(function (flags) {
+            var arr = map.map(function (v, k) {
+                return [
+                    '<p class="' + (flags[k] ? 'success' : 'error') + '">',
+                    v + ':',
+                    flags[k],
+                    '</p>'
+                ].join('');
+            });
+            document.getElementById('output').innerHTML = arr.join('');
+        });
+    </script>
+</body>
+</html>
